@@ -1,8 +1,9 @@
 # install python in the container
-FROM python:3.8.8-slim
+FROM python:3.9.7-slim
 # copy the local requirements.txt file to the
 # /app/requirements.txt in the container
 # (the /app dir will be created)
+#COPY ./start.sh /start.sh
 COPY ./requirements.txt /app/requirements.txt
 # install the packages from the requirements.txt file in the container
 RUN pip install -r /app/requirements.txt
@@ -13,4 +14,4 @@ COPY app/ /app
 # set the working directory in the container to be the /app
 WORKDIR /app
 # execute the command python main.py (in the WORKDIR) to start the app
-CMD ["python", "main.py"]
+CMD ["hypercorn","--bind","0.0.0.0:8000","main.py"]
