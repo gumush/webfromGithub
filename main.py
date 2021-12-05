@@ -15,4 +15,4 @@ async def show_test(request: Request):
 
 @app.get("/home")
 async def show_test(request: Request):
- return FileResponse('static/index.html', media_type='text/html')
+    return FileResponse('static/index.html', media_type='text/html')
